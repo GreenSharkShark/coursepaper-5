@@ -128,3 +128,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#конфиг файл для подключения к базе данных
+config.json
