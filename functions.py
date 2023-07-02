@@ -1,13 +1,14 @@
 import requests
 import psycopg2
 import os
+from DBManager import DBManager
 
 postgres_pass = os.getenv('postgres_pass')
 id_list: list = ['1858119', '672796', '796835', '3011921', '5036338', '1035627', '2676727', '4525306', '1231878',
                  '746783']
 
 
-def get_vacancies_info_by_id(company_id):
+def get_vacancies_info_by_id(company_id) -> list[str]:
     vacancies_url = "https://api.hh.ru/vacancies"
     params = {'employer_id': company_id, 'per_page': 100}
     all_vacancies = []
@@ -47,7 +48,7 @@ def get_company_info_by_id(company_id_list: list[str]) -> list:
 
 
 def save_data_to_vacamcies_table(vacancies_info_list: list) -> None:
-    conn = psycopg2.connect(port=5433, database='hh_vacancies', user='ZhorikZeniuk', password=postgres_pass)
+    conn = DBManager.connect_to_database()
     for vacancy in vacancies_info_list:
         cur = conn.cursor()
         employer = vacancy['employer']['name']
@@ -72,7 +73,7 @@ def save_data_to_vacamcies_table(vacancies_info_list: list) -> None:
 
 
 def save_data_to_companies_table(companies_info_list: list[str]) -> None:
-    conn = psycopg2.connect(port=5433, database='hh_vacancies', user='ZhorikZeniuk', password=postgres_pass)
+    conn = DBManager.connect_to_database()
     for company in companies_info_list:
         cur = conn.cursor()
         company_name = company['name']
