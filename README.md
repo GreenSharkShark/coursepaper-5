@@ -10,9 +10,9 @@ To install the project and its requirements, follow the steps below:
 
 2. Clone the repository:
 
-   ```bash
-   git clone https://github.com/your/repository.git
-   ```
+```bash
+git clone https://github.com/your/repository.git
+```
 Navigate to the project directory:
 
    ```bash
