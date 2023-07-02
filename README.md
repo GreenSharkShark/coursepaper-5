@@ -12,6 +12,7 @@ To install the project and its requirements, follow the steps below:
 
    ```bash
    git clone https://github.com/your/repository.git
+   ```
 Navigate to the project directory:
 
    ```bash
